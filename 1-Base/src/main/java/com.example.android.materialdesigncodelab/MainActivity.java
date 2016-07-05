@@ -17,9 +17,20 @@
 package com.example.android.materialdesigncodelab;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Adapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,6 +38,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.add(new ListContentFragment());
+        adapter.add(new TileContentFragment());
+        adapter.add(new CardContentFragment());
+        assert viewPager != null;
+        viewPager.setAdapter(adapter);
+
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        assert tabs != null;
+        tabs.setupWithViewPager(viewPager);
+    }
+
+    private static class Adapter extends FragmentPagerAdapter {
+
+        private List<Fragment> mFragmentList = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void add(Fragment listContentFragment) {
+            mFragmentList.add(listContentFragment);
+        }
     }
 
     @Override
