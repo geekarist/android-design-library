@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.add(new ListContentFragment());
-        adapter.add(new TileContentFragment());
-        adapter.add(new CardContentFragment());
+        adapter.add(new ListContentFragment(), "List");
+        adapter.add(new TileContentFragment(), "Tiles");
+        adapter.add(new CardContentFragment(), "Cards");
         assert viewPager != null;
         viewPager.setAdapter(adapter);
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private static class Adapter extends FragmentPagerAdapter {
 
         private List<Fragment> mFragmentList = new ArrayList<>();
+        private List<String> mTitleList = new ArrayList<>();
 
         public Adapter(FragmentManager fm) {
             super(fm);
@@ -73,8 +75,14 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void add(Fragment listContentFragment) {
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mTitleList.get(position);
+        }
+
+        public void add(Fragment listContentFragment, String title) {
             mFragmentList.add(listContentFragment);
+            mTitleList.add(title);
         }
     }
 
