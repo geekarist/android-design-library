@@ -44,16 +44,20 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        Adapter adapter = new Adapter(getSupportFragmentManager());
+        setupViewPager(viewPager);
+
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        assert tabs != null;
+        tabs.setupWithViewPager(viewPager);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        MainActivity.Adapter adapter = new MainActivity.Adapter(getSupportFragmentManager());
         adapter.add(new ListContentFragment(), "List");
         adapter.add(new TileContentFragment(), "Tiles");
         adapter.add(new CardContentFragment(), "Cards");
         assert viewPager != null;
         viewPager.setAdapter(adapter);
-
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        assert tabs != null;
-        tabs.setupWithViewPager(viewPager);
     }
 
     private static class Adapter extends FragmentPagerAdapter {
@@ -80,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
             return mTitleList.get(position);
         }
 
-        public void add(Fragment listContentFragment, String title) {
-            mFragmentList.add(listContentFragment);
+        public void add(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
             mTitleList.add(title);
         }
     }
