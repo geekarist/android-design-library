@@ -9,9 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,14 +31,14 @@ public class ListContentFragment extends Fragment {
         return recyclerView;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ContentViewHolder extends RecyclerView.ViewHolder {
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        public ContentViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.fragment_list_content, parent, false));
         }
     }
 
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public static class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
 
         public static final int SIZE = 18;
 
@@ -49,13 +46,13 @@ public class ListContentFragment extends Fragment {
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ContentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            return new ViewHolder(inflater, parent);
+            return new ContentViewHolder(inflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(ContentViewHolder holder, int position) {
         }
 
         @Override
