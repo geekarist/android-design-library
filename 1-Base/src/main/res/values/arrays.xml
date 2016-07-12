@@ -16,7 +16,7 @@
   -->
 <resources>
     <string-array name="places">
-        <item>Palais Garnie</item>
+        <item>Palais Garnier</item>
         <item>Piazza del Duomo</item>
         <item>Manhattan</item>
         <item>Senso-ji</item>

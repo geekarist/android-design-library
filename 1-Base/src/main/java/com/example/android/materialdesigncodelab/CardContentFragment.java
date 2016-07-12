@@ -1,6 +1,9 @@
 package com.example.android.materialdesigncodelab;
 
 
+import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,19 +35,42 @@ public class CardContentFragment extends Fragment {
         return recyclerView;
     }
 
-    private class ContentAdapter extends RecyclerView.Adapter {
+    private class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
 
         private static final int SIZE = 18;
+        private final String[] mPlaces;
+        private final String[] mPlaceDescriptions;
+        private final Drawable[] mPlaceDrawables;
+
+        public ContentAdapter() {
+
+            super();
+
+            Resources resources = getContext().getResources();
+            mPlaces = resources.getStringArray(R.array.places);
+            mPlaceDescriptions = resources.getStringArray(R.array.place_desc);
+
+            TypedArray placePics = resources.obtainTypedArray(R.array.places_picture);
+            mPlaceDrawables = new Drawable[placePics.length()];
+            for (int i = 0; i < mPlaceDrawables.length; i++) {
+                mPlaceDrawables[i] = placePics.getDrawable(i);
+            }
+            placePics.recycle();
+        }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ContentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             View view = inflater.inflate(R.layout.fragment_card_content, parent, false);
             return new ContentViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(ContentViewHolder holder, int position) {
+            holder.bind(
+                    mPlaces[position % mPlaces.length],
+                    mPlaceDescriptions[position % mPlaceDescriptions.length],
+                    mPlaceDrawables[position % mPlaceDrawables.length]);
         }
 
         @Override
@@ -56,6 +82,10 @@ public class CardContentFragment extends Fragment {
     private class ContentViewHolder extends RecyclerView.ViewHolder {
         public ContentViewHolder(View itemView) {
             super(itemView);
+        }
+
+        public void bind(String place, String placeDescription, Drawable placeDrawable) {
+            // TODO implement card ContentViewHolder.bind
         }
     }
 }
