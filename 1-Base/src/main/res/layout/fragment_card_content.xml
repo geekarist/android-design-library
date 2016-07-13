@@ -1,15 +1,41 @@
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     tools:context="com.example.android.materialdesigncodelab.CardContentFragment">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Hello card fragment"/>
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_place"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/a" />
+
+        <TextView
+            android:id="@+id/text_place_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/image_place"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="10"
+            android:text="Hello card fragment" />
+
+        <TextView
+            android:id="@+id/text_place_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_place"
+            android:layout_margin="10dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed faucibus orci, a interdum ex. Curabitur eu ligula mattis, suscipit odio non, molestie justo. In sollicitudin condimentum neque metus." />
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
