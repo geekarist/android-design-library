@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/image_place"
-            android:textSize="20sp"
             android:layout_margin="10dp"
-            android:textColor="@color/white"
             android:shadowColor="@color/black"
             android:shadowRadius="10"
-            android:text="Hello card fragment" />
+            android:text="Hello card fragment"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/text_place_desc"
@@ -35,6 +35,13 @@
             android:layout_below="@id/image_place"
             android:layout_margin="10dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed faucibus orci, a interdum ex. Curabitur eu ligula mattis, suscipit odio non, molestie justo. In sollicitudin condimentum neque metus." />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_place_desc"
+            android:textColor="?attr/colorPrimary" />
 
     </RelativeLayout>
 
