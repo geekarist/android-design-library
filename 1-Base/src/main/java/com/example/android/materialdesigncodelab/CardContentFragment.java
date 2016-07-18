@@ -90,9 +90,9 @@ public class CardContentFragment extends Fragment {
         public ContentViewHolder(View itemView) {
             super(itemView);
 
-            mImagePlace = (ImageView) CardContentFragment.this.getActivity().findViewById(R.id.image_place);
-            mTextPlaceTitle = (TextView) CardContentFragment.this.getActivity().findViewById(R.id.text_place_title);
-            mTextPlaceDesc = (TextView) CardContentFragment.this.getActivity().findViewById(R.id.text_place_desc);
+            mImagePlace = (ImageView) itemView.findViewById(R.id.image_place);
+            mTextPlaceTitle = (TextView) itemView.findViewById(R.id.text_place_title);
+            mTextPlaceDesc = (TextView) itemView.findViewById(R.id.text_place_desc);
         }
 
         public void bind(String place, String placeDescription, Drawable placeDrawable) {
