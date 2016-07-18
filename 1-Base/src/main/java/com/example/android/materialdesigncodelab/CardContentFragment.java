@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -80,12 +82,24 @@ public class CardContentFragment extends Fragment {
     }
 
     private class ContentViewHolder extends RecyclerView.ViewHolder {
+
+        private final ImageView mImagePlace;
+        private final TextView mTextPlaceTitle;
+        private final TextView mTextPlaceDesc;
+
         public ContentViewHolder(View itemView) {
             super(itemView);
+
+            mImagePlace = (ImageView) CardContentFragment.this.getActivity().findViewById(R.id.image_place);
+            mTextPlaceTitle = (TextView) CardContentFragment.this.getActivity().findViewById(R.id.text_place_title);
+            mTextPlaceDesc = (TextView) CardContentFragment.this.getActivity().findViewById(R.id.text_place_desc);
         }
 
         public void bind(String place, String placeDescription, Drawable placeDrawable) {
-            // TODO implement card ContentViewHolder.bind
+
+            mImagePlace.setImageDrawable(placeDrawable);
+            mTextPlaceTitle.setText(place);
+            mTextPlaceDesc.setText(placeDescription);
         }
     }
 }
