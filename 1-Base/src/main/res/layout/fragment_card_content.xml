@@ -26,7 +26,7 @@
             android:layout_alignBottom="@id/image_place"
             android:layout_marginLeft="@dimen/md_keylines"
             android:shadowColor="@color/black"
-            android:shadowRadius="10"
+            android:shadowRadius="@integer/image_text_shadow_radius"
             android:text="Hello card fragment"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/white"/>

@@ -32,4 +32,5 @@
     <dimen name="card_image_height">200dp</dimen>
     <dimen name="list_body">14sp</dimen>
     <dimen name="navheader_height">222dp</dimen>
+    <integer name="image_text_shadow_radius">10</integer>
 </resources>
