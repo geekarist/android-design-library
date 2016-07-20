@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tile_padding">
 
     <ImageView
         android:id="@+id/tile_image_place"
@@ -18,12 +19,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_height"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:shadowRadius="@integer/image_text_shadow_radius"
+        android:gravity="center"
         android:shadowColor="@color/black"
+        android:shadowRadius="@integer/image_text_shadow_radius"
         android:text="Hello tile fragment"
-        android:textSize="@dimen/article_titles"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="@dimen/article_titles"/>
 
 </RelativeLayout>
