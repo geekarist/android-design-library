@@ -1,8 +1,6 @@
 package com.example.android.materialdesigncodelab;
 
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -40,24 +38,12 @@ public class CardContentFragment extends Fragment {
     private class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
 
         private static final int SIZE = 18;
-        private final String[] mPlaces;
-        private final String[] mPlaceDescriptions;
-        private final Drawable[] mPlaceDrawables;
+
+        private PlaceContents mContents;
 
         public ContentAdapter() {
-
             super();
-
-            Resources resources = getContext().getResources();
-            mPlaces = resources.getStringArray(R.array.places);
-            mPlaceDescriptions = resources.getStringArray(R.array.place_desc);
-
-            TypedArray placePics = resources.obtainTypedArray(R.array.places_picture);
-            mPlaceDrawables = new Drawable[placePics.length()];
-            for (int i = 0; i < mPlaceDrawables.length; i++) {
-                mPlaceDrawables[i] = placePics.getDrawable(i);
-            }
-            placePics.recycle();
+            mContents = new PlaceContents(getContext().getResources());
         }
 
         @Override
@@ -70,9 +56,9 @@ public class CardContentFragment extends Fragment {
         @Override
         public void onBindViewHolder(ContentViewHolder holder, int position) {
             holder.bind(
-                    mPlaces[position % mPlaces.length],
-                    mPlaceDescriptions[position % mPlaceDescriptions.length],
-                    mPlaceDrawables[position % mPlaceDrawables.length]);
+                    mContents.getTitle(position),
+                    mContents.getDesc(position),
+                    mContents.getDrawable(position));
         }
 
         @Override

@@ -1,6 +1,8 @@
 package com.example.android.materialdesigncodelab;
 
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 /**
@@ -26,7 +30,7 @@ public class TileContentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
-        ContentAdapter adapter = new ContentAdapter();
+        ContentAdapter adapter = new ContentAdapter(getResources());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -35,16 +39,30 @@ public class TileContentFragment extends Fragment {
 
     public static class ContentViewHolder extends RecyclerView.ViewHolder {
 
+        private final TextView mTextTitle;
+        private final ImageView mImage;
+
         public ContentViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.fragment_tile_content, parent, false));
+
+            mTextTitle = (TextView) itemView.findViewById(R.id.tile_text_place_title);
+            mImage = (ImageView) itemView.findViewById(R.id.tile_image_place);
+        }
+
+        public void bind(String title, Drawable drawable) {
+
+            mTextTitle.setText(title);
+            mImage.setImageDrawable(drawable);
         }
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ContentViewHolder> {
 
         public static final int SIZE = 18;
+        private final PlaceContents mContents;
 
-        public ContentAdapter() {
+        public ContentAdapter(Resources resources) {
+            mContents = new PlaceContents(resources);
         }
 
         @Override
@@ -55,6 +73,7 @@ public class TileContentFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ContentViewHolder holder, int position) {
+            holder.bind(mContents.getTitle(position), mContents.getDrawable(position));
         }
 
         @Override
