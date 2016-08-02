@@ -17,11 +17,13 @@
 package com.example.android.materialdesigncodelab;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -46,6 +48,23 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         assert tabs != null;
         tabs.setupWithViewPager(viewPager);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            supportActionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        if (navigationView != null) {
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem item) {
+                    item.setChecked(true);
+                    return false;
+                }
+            });
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
