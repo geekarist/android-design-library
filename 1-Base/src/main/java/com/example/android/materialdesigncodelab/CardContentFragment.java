@@ -3,6 +3,7 @@ package com.example.android.materialdesigncodelab;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -81,11 +82,36 @@ public class CardContentFragment extends Fragment {
             mTextPlaceDesc = (TextView) itemView.findViewById(R.id.text_place_desc);
         }
 
-        public void bind(String place, String placeDescription, Drawable placeDrawable) {
+        public void bind(final String place, String placeDescription, Drawable placeDrawable) {
 
             mImagePlace.setImageDrawable(placeDrawable);
             mTextPlaceTitle.setText(place);
             mTextPlaceDesc.setText(placeDescription);
+
+            View actionButton = itemView.findViewById(R.id.button_action);
+            actionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(v, "Did an action on " + place, Snackbar.LENGTH_LONG).show();
+                }
+            });
+
+            View favButton = itemView.findViewById(R.id.button_favorite);
+            favButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(v, "You like " + place, Snackbar.LENGTH_LONG).show();
+                }
+            });
+
+
+            View shareButton = itemView.findViewById(R.id.button_share);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Snackbar.make(v, "You shared " + place, Snackbar.LENGTH_LONG).show();
+                }
+            });
         }
     }
 }
