@@ -1,6 +1,8 @@
 package com.example.android.materialdesigncodelab;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -50,6 +52,15 @@ public class TileContentFragment extends Fragment {
 
             mTextTitle = (TextView) itemView.findViewById(R.id.tile_text_place_title);
             mImage = (ImageView) itemView.findViewById(R.id.tile_image_place);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bind(String title, Drawable drawable) {

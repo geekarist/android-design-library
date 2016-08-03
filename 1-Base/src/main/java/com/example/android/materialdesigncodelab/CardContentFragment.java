@@ -1,6 +1,8 @@
 package com.example.android.materialdesigncodelab;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -80,6 +82,15 @@ public class CardContentFragment extends Fragment {
             mImagePlace = (ImageView) itemView.findViewById(R.id.image_place);
             mTextPlaceTitle = (TextView) itemView.findViewById(R.id.text_place_title);
             mTextPlaceDesc = (TextView) itemView.findViewById(R.id.text_place_desc);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         public void bind(final String place, String placeDescription, Drawable placeDrawable) {
