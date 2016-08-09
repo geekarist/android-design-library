@@ -16,6 +16,8 @@
 
 package com.example.android.materialdesigncodelab;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Bundle;
