@@ -60,7 +60,8 @@ public class CardContentFragment extends Fragment {
             holder.bind(
                     mContents.getTitle(position),
                     mContents.getDesc(position),
-                    mContents.getDrawable(position));
+                    mContents.getDrawable(position),
+                    mContents.getDrawableId(position));
         }
 
         @Override
@@ -74,6 +75,7 @@ public class CardContentFragment extends Fragment {
         private final ImageView mImagePlace;
         private final TextView mTextPlaceTitle;
         private final TextView mTextPlaceDesc;
+        private int mDrawableId;
 
         public ContentViewHolder(View itemView) {
             super(itemView);
@@ -89,16 +91,18 @@ public class CardContentFragment extends Fragment {
                     DetailActivity.startActivity(
                             context,
                             String.valueOf(mTextPlaceDesc.getText()),
-                            String.valueOf(mTextPlaceTitle.getText()));
+                            String.valueOf(mTextPlaceTitle.getText()),
+                            mDrawableId);
                 }
             });
         }
 
-        public void bind(final String place, String placeDescription, Drawable placeDrawable) {
+        public void bind(final String place, String placeDescription, Drawable placeDrawable, int drawableId) {
 
             mImagePlace.setImageDrawable(placeDrawable);
             mTextPlaceTitle.setText(place);
             mTextPlaceDesc.setText(placeDescription);
+            mDrawableId = drawableId;
 
             View actionButton = itemView.findViewById(R.id.button_action);
             actionButton.setOnClickListener(new View.OnClickListener() {
