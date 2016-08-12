@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -51,5 +53,18 @@ public class DetailActivity extends AppCompatActivity {
         assert imageView != null;
         imageView.setImageDrawable(
                 getResources().getDrawable(getIntent().getIntExtra(EXTRA_IMG, R.drawable.a)));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                Toast.makeText(this, "Up menu item has been selected", Toast.LENGTH_LONG).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
