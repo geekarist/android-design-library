@@ -39,12 +39,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String STATE_CURRENT_FRAGMENT = "STATE_CURRENT_FRAGMENT";
+
     private DrawerLayout mDrawerLayout;
+    private int mLastFragmentPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            mLastFragmentPosition = savedInstanceState.getInt(STATE_CURRENT_FRAGMENT, 0);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -87,15 +94,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(STATE_CURRENT_FRAGMENT, mLastFragmentPosition);
+    }
 
     private void setupViewPager(ViewPager viewPager) {
-        MainActivity.Adapter adapter = new MainActivity.Adapter(getSupportFragmentManager());
+        final MainActivity.Adapter adapter = new MainActivity.Adapter(getSupportFragmentManager());
         adapter.add(new ListContentFragment(), "List");
         adapter.add(new TileContentFragment(), "Tiles");
         adapter.add(new CardContentFragment(), "Cards");
         assert viewPager != null;
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                mLastFragmentPosition = position;
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        viewPager.setCurrentItem(mLastFragmentPosition);
     }
 
     private static class Adapter extends FragmentPagerAdapter {
